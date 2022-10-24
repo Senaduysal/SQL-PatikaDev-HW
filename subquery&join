@@ -1,0 +1,20 @@
+---kitap sayfası sayısı, ortalama kitap sayfası sayısından fazla olan kitap isimlerini, yazar isim ve soyisimi ile birlikte sıralayınız.
+
+-- iki tablonun ortaklasa bilgisini kullandıgım için INNER JOIN kullanacagım. Dolayısıyla sıra farketmez.
+
+--yani from dan sonra book ya da author diyebilirim.
+
+
+
+SELECT author.first_name, author.last_name,book.title, book.page_number
+
+FROM author
+
+INNER JOIN book ON book.author_id = author.id 
+
+WHERE book.page_number >
+
+(
+
+  SELECT AVG(page_number) FROM book
+);
