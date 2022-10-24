@@ -29,4 +29,11 @@ AND replacement_cost >
     FROM film
 );
 --4)payment tablosunda en fazla sayıda alışveriş yapan müşterileri(customer) sıralayınız.
---
+
+SELECT customer.first_name, customer.last_name, payment.rental_id
+FROM payment
+INNER JOIN customer ON customer.customer_id = payment.customer_id
+WHERE payment.rental_id =
+(
+    SELECT MAX(rental_id) FROM payment
+);
